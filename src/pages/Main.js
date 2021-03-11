@@ -14,8 +14,10 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import api from '../services/api';
 import {connect, disconnect, subscribeToNewDevs} from '../services/socket';
+import {useNavigation} from '@react-navigation/native';
 
-function Main({navigation}) {
+function Main() {
+  const navigation = useNavigation();
   const [devs, setDevs] = useState([]);
   const [currentRegion, setCurrentRegion] = useState(null);
   const [techs, setTechs] = useState('');

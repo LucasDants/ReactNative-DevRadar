@@ -1,13 +1,16 @@
+import {useRoute} from '@react-navigation/native';
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {WebView} from 'react-native-webview';
 
-function Profile({navigation}) {
-  const githubUsername = navigation.getParam('github_username');
+function Profile() {
+  const route = useRoute();
+  const {github_username} = route.params;
+  console.log(route.params);
   return (
     <WebView
       style={styles.webView}
-      source={{uri: `https://github.com/${githubUsername}`}}
+      source={{uri: `https://github.com/${github_username}`}}
     />
   );
 }
