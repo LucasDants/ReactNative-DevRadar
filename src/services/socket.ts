@@ -1,14 +1,15 @@
-import socketio from 'socket.io-client';
+import {io} from 'socket.io-client';
+import {Dev} from '../pages/Main';
 
-const socket = socketio('http://IPV4:3333', {
+const socket = io('http://IPV4:3333', {
   autoConnect: false,
 });
 
-function subscribeToNewDevs(subscribeFunction) {
+function subscribeToNewDevs(subscribeFunction: (dev: Dev) => void) {
   socket.on('new-dev', subscribeFunction);
 }
 
-function connect(latitude, longitude, techs) {
+function connect(latitude: string, longitude: string, techs: string) {
   socket.io.opts.query = {
     latitude,
     longitude,

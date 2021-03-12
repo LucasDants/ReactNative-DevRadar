@@ -16,10 +16,30 @@ import api from '../services/api';
 import {connect, disconnect, subscribeToNewDevs} from '../services/socket';
 import {useNavigation} from '@react-navigation/native';
 
+interface PositionProps {
+  latitude: number;
+  longitude: number;
+  latitudeDelta: number;
+  longitudeDelta: number;
+}
+
+export interface Dev {
+  _id: number;
+  name: string;
+  avatar_url: string;
+  github_username: string;
+  bio: string;
+  techs: string[];
+  location: {
+    coordinates: number[];
+  };
+}
+
 function Main() {
   const navigation = useNavigation();
-  const [devs, setDevs] = useState([]);
-  const [currentRegion, setCurrentRegion] = useState(null);
+  const [devs, setDevs] = useState<Dev[]>([] as Dev[]);
+  // eslint-disable-next-line prettier/prettier
+  const [currentRegion, setCurrentRegion] = useState<PositionProps>({} as PositionProps);
   const [techs, setTechs] = useState('');
 
   useEffect(() => {
@@ -47,7 +67,7 @@ function Main() {
               longitudeDelta: 0.04,
             });
           },
-          (error) => {
+          () => {
             setCurrentRegion({
               latitude: -23.6821604,
               longitude: -46.875492,
@@ -72,7 +92,7 @@ function Main() {
 
     const {latitude, longitude} = currentRegion;
 
-    connect(latitude, longitude, techs);
+    connect(String(latitude), String(longitude), techs);
   }
 
   async function loadDevs() {
@@ -89,11 +109,12 @@ function Main() {
     setupWebsocket();
   }
 
-  function handleRegionChanged(region) {
+  function handleRegionChanged(region: PositionProps) {
+    console.log('region', region);
     setCurrentRegion(region);
   }
 
-  if (!currentRegion) {
+  if (!currentRegion.latitude) {
     return null;
   }
 
