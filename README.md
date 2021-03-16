@@ -13,7 +13,7 @@
 </p>
 
 <h1>:memo:About</h1>
-<p>DevRadar is a project developed during the <a href="https://rocketseat.com/">Semana Omnistack</a> presented by <a href="https://www.linkedin.com/school/rocketseat/">Rockeseat</a>. This project is a way to find near devs by techs.</p>
+<p>DevRadar is a project developed during the <a href="https://rocketseat.com/">Semana Omnistack 10</a> presented by <a href="https://www.linkedin.com/school/rocketseat/">Rockeseat</a>. This project is a way to find near devs by techs.</p>
 <p>API: <a href="https://github.com/Luksdantas/NodeJS-DevRadar">DevRadar API</a></p>
 <p>WEB: <a href="https://github.com/Luksdantas/ReactJS-DevRadar">DevRadar WEB</a></p>
 
